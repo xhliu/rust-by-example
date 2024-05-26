@@ -1,0 +1,8 @@
+[package]
+name = "myredb"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+redb = "1.4.0"  # Replace with the latest version
+dotenv = "0.15.0"

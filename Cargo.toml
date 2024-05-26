@@ -1,4 +1,2 @@
 [workspace]
-members = [
-    "postgres"
-]
+members = ["postgres", "myredb"]
