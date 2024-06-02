@@ -1,2 +1,2 @@
 [workspace]
-members = ["postgres", "myredb", "eventsapi"]
+members = ["postgres", "myredb", "eventsapi", "owner"]
