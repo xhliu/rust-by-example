@@ -158,4 +158,38 @@ fn main() {
         numbers.push(4); // mutable Vec supports push
         println!("numbers: {:?}", numbers); // numbers: [1, 2, 3, 4]
     }
+
+    // multiple immutable borrows or one mutable borrow
+    {
+        let mut writer = vec![1, 2, 3];
+        // let reader = &writer;
+
+        writer.push(4); // cannot borrow `writer` as mutable because it is also borrowed as immutable
+
+        let reader = &writer;
+        println!("len: {}", reader.len()); // no error, reader is not active because it was borrowed
+    }
+
+    {
+        // https://www.openmymind.net/Rust-Ownership-Move-and-Borrow-part-1/
+        let mut a1 = 1;
+        let a2 = &a1;
+        let a3 = &a1; // No Problem. Can have multiple borrows
+        println!("{:?} {:?} {:?}", a1, a2, a3);
+
+        // let mut b1 = 1;
+        // let b2 = &mut b1;
+        // let b3 = &mut b1; // Fail. Cannot mutably borrow when already mutably borrowed
+        // println!("{:?} {:?} {:?}", b1, b2, b3);
+
+        // let mut c1 = 1;
+        // let c2 = &c1;
+        // let c3 = &mut c1; // Fail. Cannot mutably borrow when already borrowed
+        // println!("{:?} {:?} {:?}", c1, c2, c3);
+
+        // let mut d1 = 1;
+        // let d2 = &mut d1;
+        // let d3 = &d1; // Fail. Cannot borrow when already mutably borrowed
+        // println!("{:?} {:?} {:?}", d1, d2, d3);
+    }
 }
